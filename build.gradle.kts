@@ -5,4 +5,5 @@ plugins {
     alias(libs.plugins.kotlin.compose) apply false
     alias(libs.plugins.google.devtools) apply false
     alias(libs.plugins.google.hilt) apply false
+    alias(libs.plugins.kotlinx.serialization) apply false
 }
