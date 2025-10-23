@@ -1,4 +1,4 @@
-package white.ball.rick_and_morty.data.remote_storage.retrofit.model
+package white.ball.rick_and_morty.data.remote_storage.retrofit.model.additional
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

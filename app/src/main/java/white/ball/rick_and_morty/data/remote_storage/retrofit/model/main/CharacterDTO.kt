@@ -1,6 +1,7 @@
-package white.ball.rick_and_morty.data.remote_storage.retrofit.model
+package white.ball.rick_and_morty.data.remote_storage.retrofit.model.main
 
 import kotlinx.serialization.Serializable
+import white.ball.rick_and_morty.data.remote_storage.retrofit.model.additional.OriginDTO
 
 @Serializable
 data class CharacterDTO (

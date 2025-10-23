@@ -18,7 +18,6 @@ import androidx.compose.ui.unit.sp
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.http.GET
@@ -27,42 +26,18 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Response
 
 interface RickAndMortyApi {
 
     @GET("character")
-    suspend fun getAllCharacters(): ResponseDTO
+    suspend fun getAllCharacters(): Response<ResponseDTO>
 }
 
 fun getRickAndMortyApi(): RickAndMortyApi {
     return retrofit(
         "https://rickandmortyapi.com/api/"
     ).create(RickAndMortyApi::class.java)
-}
-
-@Composable
-fun ShowScreen() {
-    var response by remember { mutableStateOf<ResponseDTO?>(null) }
-
-    LaunchedEffect(Unit) {
-        CoroutineScope(Dispatchers.IO).launch {
-            delay(2000L)
-            response = getRickAndMortyApi().getAllCharacters()
-
-        }
-    }
-    Column ( modifier = Modifier
-        .fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(
-            text = response?.results?.size.toString(),
-            style = TextStyle(
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold
-            )
-        )
-    }
 }
 
 fun retrofit(baseUrl: String): Retrofit {
